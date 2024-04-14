@@ -1,0 +1,54 @@
+name: Single Cell RNA data analysis
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  pull-and-run:
+    runs-on: ubuntu-latest
+    container: docker://dvcorg/cml:latest
+
+    steps:
+      - name: Install Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install docker.io -y 
+          
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install Packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            any::Seurat
+            any::ggplot2
+            any::tidyverse
+            any::gridExtra
+            any::SeuratObject
+            any::patchwork
+            any::celldex
+            any::openxlsx
+            any::clusterProfiler
+            any::enrichplot
+            any::pathview
+            any::SingleR
+            any::pheatmap
+            any::org.Hs.eg.db
+            any::readxl
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Running R scripts 
+        run: |  
+          Rscript singlec-cell-dataanalysis-normalvsovarian.R
+          
+      - name: Build and Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: samreenraza40/microarray_data_analysis_scripts
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          dockerfile: dockerfile
