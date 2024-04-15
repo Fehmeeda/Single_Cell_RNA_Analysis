@@ -39,14 +39,13 @@ RUN R -e "BiocManager::install(c('Seurat', 'ggplot2', 'tidyverse', 'gridExtra', 
 RUN mkdir /data
 
 # Copy scripts into the /data directory
-COPY scripts/ /data/
+COPY singlec-cell-dataanalysis-normalvsovarian.R /data/
 
 # Copy required files and datasets into the /data directory
-COPY GSE40595_RAW/ /data/GSE40595_RAW/
-COPY Required_files/ /data/Required_files/
+COPY GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/ /data/GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/
 
 # Set the working directory to /data
 WORKDIR /data/
 
 # Run R scripts
-CMD ["Rscript", "GSE40595_Microarray_data_analysis.R"]
+CMD ["Rscript", "singlec-cell-dataanalysis-normalvsovarian.R"]
