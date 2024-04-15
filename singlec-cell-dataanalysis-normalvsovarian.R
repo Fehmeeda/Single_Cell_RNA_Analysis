@@ -17,17 +17,17 @@ library(pathview)
 options(Seurat.object.assay.version = "v3")
 
 #sample1
-sample1 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM3319036_sample_1-5_filtered_gene_bc_matrices_h5.h5")
+sample1 <- Read10X_h5(filename = "GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/GSM3319036_sample_1-5_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample1 <- CreateSeuratObject(counts = sample1, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample2
-sample2 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM3319043_sample_3-16_filtered_gene_bc_matrices_h5.h5")
+sample2 <- Read10X_h5(filename = "GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/GSM3319043_sample_3-16_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample2 <- CreateSeuratObject(counts = sample2, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample3
-sample3 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM3557973_sampleC1_B1_i12E_filtered_gene_bc_matrices_h5.h5")
+sample3 <- Read10X_h5(filename = "GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/GSM3557973_sampleC1_B1_i12E_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample3 <- CreateSeuratObject(counts = sample3, project = "Normal", min.cells = 3, min.features = 200)
 
@@ -36,9 +36,9 @@ sample3 <- CreateSeuratObject(counts = sample3, project = "Normal", min.cells = 
 # Now load ovarian samples and also create seurat objects:
 
 # load barcodes , features(genes), matrix files:
-sample4<-Read10X(data.dir = "C:/Users/PMLS/Documents/sample45")
-sample5<-Read10X(data.dir = "C:/Users/PMLS/Documents/sample46")
-sample6<-Read10X(data.dir = "C:/Users/PMLS/Documents/sample47")
+sample4<-Read10X(data.dir = "GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/OvarianSample1")
+sample5<-Read10X(data.dir = "GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/OvarianSample2")
+sample6<-Read10X(data.dir = "GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/OvarianSample3")
 
 #Create Seurat Objects:
 
@@ -259,7 +259,7 @@ suppressPackageStartupMessages(library(ggplot2))
 library(org.Hs.eg.db)
 organism = "org.Hs.eg.db" 
 library(readxl)
-file2<-"C:/Users/PMLS/Documents/Singlecelldataset1_kegg&GOinput.xlsx"
+file2<-"GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/Singlecelldataset1_kegg&GOinput.xlsx"
 df = read_excel(file2)
 original_gene_list <- df$avg_log2FC
 #original_gene_list
@@ -294,7 +294,7 @@ dotplot(gse, showCategory=10, split=".sign") + facet_grid(.~.sign)
 
 library(readxl)
 
-file3<-"C:/Users/PMLS/Documents/Singlecelldataset1_kegg&GOinput.xlsx"
+file3<-"GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/Singlecelldataset1_kegg&GOinput.xlsx"
 df1 = read_excel(file3)
 original_gene_list1 <- df1$avg_log2FC
 # name the vector
