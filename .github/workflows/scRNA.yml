@@ -35,6 +35,7 @@ jobs:
             any::SingleR
             any::pheatmap
             any::org.Hs.eg.db
+            any::hdf5r
             any::readxl
 
       - name: Check out repository
