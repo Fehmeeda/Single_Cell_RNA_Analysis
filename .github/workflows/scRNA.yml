@@ -47,7 +47,7 @@ jobs:
       - name: Build and Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: samreenraza40/microarray_data_analysis_scripts
+          image: fehmeedamustafa/single_cell_rna
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
