@@ -17,44 +17,44 @@ library(pathview)
 options(Seurat.object.assay.version = "v3")
 
 #sample1
-sample1 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM3319043_sample_3-16_filtered_gene_bc_matrices_h5.h5")
+sample1 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3319043_sample_3-16_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample1 <- CreateSeuratObject(counts = sample1, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample2
-sample2 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM3319044_sample_3-17_filtered_gene_bc_matrices_h5.h5")
+sample2 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3319044_sample_3-17_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample2 <- CreateSeuratObject(counts = sample2, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample3
-sample3 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM3557969_sample6a_B1_i12H_filtered_gene_bc_matrices_h5.h5")
+sample3 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557969_sample6a_B1_i12H_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample3 <- CreateSeuratObject(counts = sample3, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample4
-sample4 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM3557961_sample11_B2_i10F_filtered_gene_bc_matrices_h5.h5")
+sample4 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557961_sample11_B2_i10F_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample4 <- CreateSeuratObject(counts = sample4, project = "Normal", min.cells = 3, min.features = 200)
 
 # Now load ovarian samples and also create seurat objects:
 
 #sample1
-sample5<- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM7431434_E1_filtered_feature_bc_matrix.h5")
+sample5<- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431434_E1_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample5 <- CreateSeuratObject(counts = sample5, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample2
-sample6<- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM7431435_E2_filtered_feature_bc_matrix.h5")
+sample6<- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431435_E2_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample6 <- CreateSeuratObject(counts = sample6, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample3
-sample7 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM7431436_E3_filtered_feature_bc_matrix.h5")
+sample7 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431436_E3_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample7 <- CreateSeuratObject(counts = sample7, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample4
-sample8 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM7431437_E4_filtered_feature_bc_matrix.h5")
+sample8 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431437_E4_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample8 <- CreateSeuratObject(counts = sample8, project = "Ovarian", min.cells = 3, min.features = 200)
 
@@ -257,44 +257,3 @@ all_Marker$status <- ifelse(all_Marker$avg_log2FC >= 2 & all_Marker$p_val_adj < 
                                    "Not significant"))
 library(openxlsx)
 write.xlsx(all_Marker,"singlecellDEGs.xlsx",rowNames=FALSE)
-
-
-##Step: Gene Set Enrichment Analysis
-
-# we use ggplot2 to add x axis labels (ex: ridgeplot)
-suppressPackageStartupMessages(library(ggplot2))
-
-library(org.Hs.eg.db)
-organism = "org.Hs.eg.db" 
-library(readxl)
-file2<-"C:/Users/PMLS/Documents/singlecellDEGs.xlsx"
-df = read_excel(file2)
-original_gene_list <- df$avg_log2FC
-#original_gene_list
-
-# name the vector
-names(original_gene_list) <- df$gene
-#original_gene_list
-
-# omit any NA values 
-gene_list<-na.omit(original_gene_list)
-
-# sort the list in decreasing order (required for clusterProfiler)
-gene_list = sort(gene_list, decreasing = TRUE)
-
-#Gene Ontology
-
-gse <- gseGO(geneList=gene_list, 
-             ont ="ALL", 
-             keyType = "SYMBOL", 
-             nPerm = 10000, 
-             minGSSize = 3, 
-             maxGSSize = 800, 
-             pvalueCutoff = 0.05, 
-             verbose = TRUE, 
-             OrgDb = organism, 
-             pAdjustMethod = "none")
-
-require(DOSE)
-dotplot(gse, showCategory=10, split=".sign") + facet_grid(.~.sign)
-
