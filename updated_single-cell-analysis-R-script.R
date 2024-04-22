@@ -16,24 +16,24 @@ library(pathview)
 options(Seurat.object.assay.version = "v3")
 
 #sample1
-sample1 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM3557963_sample13_B1_i12C_filtered_gene_bc_matrices_h5.h5")
+sample1 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557963_sample13_B1_i12C_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample1 <- CreateSeuratObject(counts = sample1, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample2
-sample2 <- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM3319039_sample_1-8_filtered_gene_bc_matrices_h5.h5")
+sample2 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3319039_sample_1-8_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample2 <- CreateSeuratObject(counts = sample2, project = "Normal", min.cells = 3, min.features = 200)
 
 # Now load ovarian samples and also create seurat objects:
 
 #sample1
-sample3<- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM7431438_E7_filtered_feature_bc_matrix.h5")
+sample3<- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431438_E7_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample3 <- CreateSeuratObject(counts = sample3, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample2
-sample4<- Read10X_h5(filename = "C:/Users/PMLS/Documents/GSM7431439_E9_filtered_feature_bc_matrix.h5")
+sample4<- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431439_E9_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample4 <- CreateSeuratObject(counts = sample4, project = "Ovarian", min.cells = 3, min.features = 200)
 
