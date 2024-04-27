@@ -24,9 +24,6 @@ jobs:
             any::patchwork
             any::celldex
             any::openxlsx
-            any::clusterProfiler
-            any::enrichplot
-            any::pathview
             any::SingleR
             any::pheatmap
             any::org.Hs.eg.db
