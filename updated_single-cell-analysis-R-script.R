@@ -81,12 +81,12 @@ VlnPlot(Mergedsamples, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"),
 #View(Mergedsamples)
 
 # Data normalization
-Mergedsamples@assays[["RNA"]]@data@x
+#Mergedsamples@assays[["RNA"]]@data@x
 
 Mergedsamples <- NormalizeData(Mergedsamples, 
                                normalization.method ="LogNormalize", scale.factor = 10000)
 
-Mergedsamples@assays[["RNA"]]@data@x
+#Mergedsamples@assays[["RNA"]]@data@x
 
 # Identification of highly variable features (feature selection)
 #Mergedsamples
@@ -109,7 +109,7 @@ Mergedsamples <- ScaleData(Mergedsamples) #2000 identified variable features
 all.genes <- rownames(Mergedsamples)
 Mergedsamples <- ScaleData(Mergedsamples, features = all.genes) 
 
-Mergedsamples@assays[["RNA"]]@data@x
+#Mergedsamples@assays[["RNA"]]@data@x
 
 #View(Mergedsamples@commands)
 
