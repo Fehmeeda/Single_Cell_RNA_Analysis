@@ -7,10 +7,6 @@ library(SeuratObject)
 library(patchwork)
 library(celldex)
 library(openxlsx)
-library(clusterProfiler)
-library(enrichplot)
-library(pathview)
-
 
 # first load normal samples from a dataset and create Seurat Object as well.
 
