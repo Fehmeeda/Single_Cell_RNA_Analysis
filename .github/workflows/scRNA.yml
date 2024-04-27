@@ -6,14 +6,9 @@ on:
 jobs:
   pull-and-run:
     runs-on: ubuntu-latest
-  
+    container: docker://dvcorg/cml:latest
 
-    steps:
-      - name: Install Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install docker.io -y 
-          
+    steps:          
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
 
@@ -45,12 +40,3 @@ jobs:
         run: |  
           Rscript GSE233615-SingleCellRNAseq-script2.R
           Rscript updated_single-cell-analysis-R-script.R
-          
-      - name: Build and Push Docker Image
-        uses: mr-smithers-excellent/docker-build-push@v6
-        with:
-          image: fehmeedamustafa/single_cell_rna
-          registry: docker.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          dockerfile: dockerfile
