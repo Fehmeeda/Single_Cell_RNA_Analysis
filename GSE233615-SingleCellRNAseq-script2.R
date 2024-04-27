@@ -135,7 +135,7 @@ Mergedsamples <- ScaleData(Mergedsamples, features = all.genes)
 
 Mergedsamples@assays[["RNA"]]@data@x
 
-View(Mergedsamples@commands)
+#View(Mergedsamples@commands)
 
 #Perform PCA on the scaled data (linear dimensional reduction)
 print("linear dimensional reduction")
