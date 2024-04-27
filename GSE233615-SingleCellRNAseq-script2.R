@@ -133,7 +133,7 @@ Mergedsamples <- ScaleData(Mergedsamples) #2000 identified variable features
 all.genes <- rownames(Mergedsamples)
 Mergedsamples <- ScaleData(Mergedsamples, features = all.genes) 
 
-Mergedsamples@assays[["RNA"]]@data@x
+#Mergedsamples@assays[["RNA"]]@data@x
 
 #View(Mergedsamples@commands)
 
