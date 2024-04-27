@@ -64,7 +64,7 @@ cell_ids <- paste0("sample", 1:8)
 Mergedsamples<- merge(sample1, y = c(sample2, sample3,sample4,sample5,sample6,sample7,sample8),          
                       add.cell.ids = cell_ids,
                       project = 'MergedSamplesNormalandOvarian')
-view(Mergedsamples@meta.data)
+#view(Mergedsamples@meta.data)
 
 
 # Quality control and selecting cells for further analysis
@@ -81,7 +81,7 @@ range(Mergedsamples$nCount_RNA)
 # store mitochondrial percentage in object meta data
 Mergedsamples <- PercentageFeatureSet(Mergedsamples, pattern = "^MT-", col.name = "percent.mt")
 
-view(Mergedsamples@meta.data)
+#view(Mergedsamples@meta.data)
 
 range(Mergedsamples$percent.mt)
 
@@ -144,7 +144,7 @@ Mergedsamples <- RunPCA(Mergedsamples, features = VariableFeatures(object = Merg
 # Examine and visualize PCA results a few different ways
 print("PCA")
 # DimPlot(), VizDimReduction() and DimHeatmap ()
-DimPlot(Mergedsamples, reduction = "pca", dims = c(1,2))
+#DimPlot(Mergedsamples, reduction = "pca", dims = c(1,2))
 DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 10))
 DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 50))
 
@@ -154,7 +154,7 @@ Mergedsamples <- JackStraw(Mergedsamples, num.replicate = 100)
 Mergedsamples <- ScoreJackStraw(Mergedsamples, dims = 1:20)
 JackStrawPlot(Mergedsamples, dims = 1:20)
 
-ElbowPlot(Mergedsamples)
+#ElbowPlot(Mergedsamples)
 ElbowPlot(Mergedsamples, ndims = 50, reduction = "pca")
 
 # Cluster the cells
@@ -264,7 +264,7 @@ DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
 print("findMarkers between conditions")
 
 Mergedsamples.integrated$celltype.cnd <- paste0(Mergedsamples.integrated$singleR.labels,'_', Mergedsamples.integrated$orig.ident)
-View(Mergedsamples.integrated@meta.data)
+#View(Mergedsamples.integrated@meta.data)
 Idents(Mergedsamples.integrated) <- Mergedsamples.integrated$celltype.cnd
 
 DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
