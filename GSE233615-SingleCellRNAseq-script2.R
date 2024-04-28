@@ -23,9 +23,9 @@ sample2 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Norm
 sample2 <- CreateSeuratObject(counts = sample2, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample3
-sample3 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557969_sample6a_B1_i12H_filtered_gene_bc_matrices_h5.h5")
+#sample3 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557969_sample6a_B1_i12H_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
-sample3 <- CreateSeuratObject(counts = sample3, project = "Normal", min.cells = 3, min.features = 200)
+#sample3 <- CreateSeuratObject(counts = sample3, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample4
 #sample4 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557961_sample11_B2_i10F_filtered_gene_bc_matrices_h5.h5")
@@ -45,9 +45,9 @@ sample6<- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerda
 sample6 <- CreateSeuratObject(counts = sample6, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample3
-sample7 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431436_E3_filtered_feature_bc_matrix.h5")
+#sample7 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431436_E3_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
-sample7 <- CreateSeuratObject(counts = sample7, project = "Ovarian", min.cells = 3, min.features = 200)
+#sample7 <- CreateSeuratObject(counts = sample7, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample4
 #sample8 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431437_E4_filtered_feature_bc_matrix.h5")
@@ -57,7 +57,7 @@ sample7 <- CreateSeuratObject(counts = sample7, project = "Ovarian", min.cells =
 # Create a vector of cell IDs
 cell_ids <- paste0("sample", 1:6)  
 # Merge Seurat Objects Normal
-Mergedsamples<- merge(sample1, y = c(sample2, sample3,sample5,sample6,sample7),          
+Mergedsamples<- merge(sample1, y = c(sample2,sample5,sample6),          
                       add.cell.ids = cell_ids,
                       project = 'MergedSamplesNormalandOvarian')
 #view(Mergedsamples@meta.data)
