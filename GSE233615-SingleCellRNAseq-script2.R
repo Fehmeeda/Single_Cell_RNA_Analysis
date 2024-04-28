@@ -244,13 +244,13 @@ Mergedsamples.integrated$singleR.labels<-pred$labels[match(rownames(Mergedsample
 #plotDeltaDistribution(pred)
 library(pheatmap)
 tab <- table(Assigned=pred$labels, Clusters=Mergedsamples.integrated$seurat_clusters)
-pheatmap(log10(tab+10), color = colorRampPalette(c('white','blue'))(10))
+#pheatmap(log10(tab+10), color = colorRampPalette(c('white','blue'))(10))
 
 # setting Idents as Seurat annotations provided (also a sanity check!)
 print("setting Idents as Seurat annotations provided")
 
 Idents(Mergedsamples.integrated) <- Mergedsamples.integrated@meta.data$singleR.labels
-Idents(Mergedsamples.integrated)
+#Idents(Mergedsamples.integrated)
 
 #DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
 
