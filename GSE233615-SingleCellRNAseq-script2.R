@@ -55,7 +55,7 @@ sample6 <- CreateSeuratObject(counts = sample6, project = "Ovarian", min.cells =
 #sample8 <- CreateSeuratObject(counts = sample8, project = "Ovarian", min.cells = 3, min.features = 200)
 
 # Create a vector of cell IDs
-cell_ids <- paste0("sample", 1:6)  
+cell_ids <- paste0("sample", 1:4)  
 # Merge Seurat Objects Normal
 Mergedsamples<- merge(sample1, y = c(sample2,sample5,sample6),          
                       add.cell.ids = cell_ids,
