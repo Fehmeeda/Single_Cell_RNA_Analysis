@@ -140,9 +140,9 @@ Mergedsamples <- RunPCA(Mergedsamples, features = VariableFeatures(object = Merg
 # Examine and visualize PCA results a few different ways
 print("PCA")
 # DimPlot(), VizDimReduction() and DimHeatmap ()
-DimPlot(Mergedsamples, reduction = "pca", dims = c(1,2))
+#DimPlot(Mergedsamples, reduction = "pca", dims = c(1,2))
 DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 10))
-DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 50))
+#DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 50))
 
 # Determine the ‘dimensional’ of the dataset
 print("dimensional")
@@ -161,14 +161,14 @@ Mergedsamples <- FindClusters(Mergedsamples, resolution=c(0.1,0.3,0.5,0.7,1))
 # Run non-linear dimensional reduction (UMAP/tSNE)
 print("non-linear dimensional reduction ")
 Mergedsamples <- RunUMAP(Mergedsamples, dims = 1:20)
-DimPlot(Mergedsamples, reduction = "umap", label = TRUE, repel = TRUE)
+#DimPlot(Mergedsamples, reduction = "umap", label = TRUE, repel = TRUE)
 
 Mergedsamples <- RunTSNE(object = Mergedsamples)
-DimPlot(object = Mergedsamples, reduction = "tsne")
+#DimPlot(object = Mergedsamples, reduction = "tsne")
 
 Mergedsamples <- RunTSNE(object = Mergedsamples)
-DimPlot(object = Mergedsamples, reduction = "tsne")
-DimPlot(object = Mergedsamples, reduction = "tsne", group.by = 'orig.ident')
+#DimPlot(object = Mergedsamples, reduction = "tsne")
+#DimPlot(object = Mergedsamples, reduction = "tsne", group.by = 'orig.ident')
 
 ######Setup the Seurat objects
 # split the object into a list of two repeats
@@ -215,15 +215,13 @@ Mergedsamples.integrated<-RunUMAP(Mergedsamples.integrated, reduction="pca",
                                   dims=1:30)
 
 #Visualization
-print("Visualization")
 
-DimPlot(Mergedsamples.integrated,reduction="umap",label = TRUE)
+#DimPlot(Mergedsamples.integrated,reduction="umap",label = TRUE)
 
 #Compare
-print("Compare")
-plot1<-DimPlot(Mergedsamples,reduction="umap", group.by = 'orig.ident')
-plot2<-DimPlot(Mergedsamples.integrated,reduction="umap", group.by = 'orig.ident')
-plot1+plot2
+#plot1<-DimPlot(Mergedsamples,reduction="umap", group.by = 'orig.ident')
+#plot2<-DimPlot(Mergedsamples.integrated,reduction="umap", group.by = 'orig.ident')
+#plot1+plot2
 
 ref<-celldex::HumanPrimaryCellAtlasData()
 #View(as.data.frame(colData(ref)))
@@ -234,15 +232,16 @@ pred<-SingleR(test=pbmc_counts,
               ref=ref,
               labels=ref$label.main)
 
-pred
+#pred
 
 Mergedsamples.integrated$singleR.labels<-pred$labels[match(rownames(Mergedsamples.integrated@meta.data),rownames(pred))]
-DimPlot(Mergedsamples.integrated, reduction = "umap", group.by = "singleR.labels")+NoLegend()
+
+#DimPlot(Mergedsamples.integrated, reduction = "umap", group.by = "singleR.labels")+NoLegend()
 
 
-plotScoreHeatmap(pred)
+#plotScoreHeatmap(pred)
 
-plotDeltaDistribution(pred)
+#plotDeltaDistribution(pred)
 library(pheatmap)
 tab <- table(Assigned=pred$labels, Clusters=Mergedsamples.integrated$seurat_clusters)
 pheatmap(log10(tab+10), color = colorRampPalette(c('white','blue'))(10))
@@ -253,7 +252,7 @@ print("setting Idents as Seurat annotations provided")
 Idents(Mergedsamples.integrated) <- Mergedsamples.integrated@meta.data$singleR.labels
 Idents(Mergedsamples.integrated)
 
-DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
+#DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
 
 
 # findMarkers between conditions ---------------------
@@ -263,7 +262,7 @@ Mergedsamples.integrated$celltype.cnd <- paste0(Mergedsamples.integrated$singleR
 #View(Mergedsamples.integrated@meta.data)
 Idents(Mergedsamples.integrated) <- Mergedsamples.integrated$celltype.cnd
 
-DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
+#DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
 
 
 all_Marker<-FindAllMarkers(Mergedsamples.integrated,
