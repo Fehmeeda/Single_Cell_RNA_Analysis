@@ -14,8 +14,9 @@ jobs:
         
       - name: Install devtools and presto
         run: |
-          install.packages('devtools')
-          devtools::install_github('immunogenomics/presto')
+          Rscript -e 'install.packages("devtools", repos="https://cloud.r-project.org/")'
+          Rscript -e 'devtools::install_github("immunogenomics/presto")'
+
 
       - name: Install Packages
         uses: r-lib/actions/setup-r-dependencies@v2
