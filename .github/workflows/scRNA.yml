@@ -29,6 +29,7 @@ jobs:
             any::org.Hs.eg.db
             any::hdf5r
             any::readxl
+            any::viridis
 
       - name: Check out repository
         uses: actions/checkout@v3
