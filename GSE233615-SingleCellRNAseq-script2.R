@@ -107,7 +107,7 @@ Mergedsamples <- NormalizeData(Mergedsamples,
 
 # Identification of highly variable features (feature selection)
 print(" feature selection")
-Mergedsamples
+#Mergedsamples
 
 Mergedsamples <- FindVariableFeatures(Mergedsamples, 
                                       selection.method = "vst", nfeatures = 2000)
@@ -120,7 +120,7 @@ write.table(variable_genes, file = "variable_genes.txt", sep = "\t", row.names =
 
 VariableFeaturePlot(Mergedsamples)
 
-Mergedsamples
+#Mergedsamples
 
 # Data scaling
 print("Data scaling")
@@ -151,7 +151,7 @@ Mergedsamples <- ScoreJackStraw(Mergedsamples, dims = 1:20)
 JackStrawPlot(Mergedsamples, dims = 1:20)
 
 #ElbowPlot(Mergedsamples)
-ElbowPlot(Mergedsamples, ndims = 50, reduction = "pca")
+#ElbowPlot(Mergedsamples, ndims = 50, reduction = "pca")
 
 # Cluster the cells
 print("Cluster the cells")
