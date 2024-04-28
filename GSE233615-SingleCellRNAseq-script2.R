@@ -221,9 +221,9 @@ print("Visualization")
 
 #Compare
 print("Compare")
-plot1<-DimPlot(Mergedsamples,reduction="umap", group.by = 'orig.ident')
-plot2<-DimPlot(Mergedsamples.integrated,reduction="umap", group.by = 'orig.ident')
-plot1+plot2
+#plot1<-DimPlot(Mergedsamples,reduction="umap", group.by = 'orig.ident')
+#plot2<-DimPlot(Mergedsamples.integrated,reduction="umap", group.by = 'orig.ident')
+#plot1+plot2
 
 ref<-celldex::HumanPrimaryCellAtlasData()
 #View(as.data.frame(colData(ref)))
