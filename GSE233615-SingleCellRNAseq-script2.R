@@ -148,7 +148,7 @@ DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 50))
 print("dimensional")
 Mergedsamples <- JackStraw(Mergedsamples, num.replicate = 100)
 Mergedsamples <- ScoreJackStraw(Mergedsamples, dims = 1:20)
-JackStrawPlot(Mergedsamples, dims = 1:20)
+#JackStrawPlot(Mergedsamples, dims = 1:20)
 
 ElbowPlot(Mergedsamples)
 ElbowPlot(Mergedsamples, ndims = 50, reduction = "pca")
