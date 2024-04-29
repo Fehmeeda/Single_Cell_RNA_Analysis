@@ -23,9 +23,9 @@ sample2 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Norm
 sample2 <- CreateSeuratObject(counts = sample2, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample3
-#sample3 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557969_sample6a_B1_i12H_filtered_gene_bc_matrices_h5.h5")
+sample3 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557969_sample6a_B1_i12H_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
-#sample3 <- CreateSeuratObject(counts = sample3, project = "Normal", min.cells = 3, min.features = 200)
+sample3 <- CreateSeuratObject(counts = sample3, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample4
 #sample4 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557961_sample11_B2_i10F_filtered_gene_bc_matrices_h5.h5")
@@ -45,9 +45,9 @@ sample6<- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerda
 sample6 <- CreateSeuratObject(counts = sample6, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample3
-#sample7 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431436_E3_filtered_feature_bc_matrix.h5")
+sample7 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431436_E3_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
-#sample7 <- CreateSeuratObject(counts = sample7, project = "Ovarian", min.cells = 3, min.features = 200)
+sample7 <- CreateSeuratObject(counts = sample7, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample4
 #sample8 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431437_E4_filtered_feature_bc_matrix.h5")
@@ -55,9 +55,9 @@ sample6 <- CreateSeuratObject(counts = sample6, project = "Ovarian", min.cells =
 #sample8 <- CreateSeuratObject(counts = sample8, project = "Ovarian", min.cells = 3, min.features = 200)
 
 # Create a vector of cell IDs
-cell_ids <- paste0("sample", 1:4)  
+cell_ids <- paste0("sample", 1:6)  
 # Merge Seurat Objects Normal
-Mergedsamples<- merge(sample1, y = c(sample2,sample5,sample6),          
+Mergedsamples<- merge(sample1, y = c(sample2,sample3,sample5,sample6,sample7),          
                       add.cell.ids = cell_ids,
                       project = 'MergedSamplesNormalandOvarian')
 #view(Mergedsamples@meta.data)
@@ -140,9 +140,9 @@ Mergedsamples <- RunPCA(Mergedsamples, features = VariableFeatures(object = Merg
 # Examine and visualize PCA results a few different ways
 print("PCA")
 # DimPlot(), VizDimReduction() and DimHeatmap ()
-#DimPlot(Mergedsamples, reduction = "pca", dims = c(1,2))
+DimPlot(Mergedsamples, reduction = "pca", dims = c(1,2))
 DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 10))
-#DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 50))
+DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 50))
 
 # Determine the ‘dimensional’ of the dataset
 print("dimensional")
@@ -150,8 +150,8 @@ Mergedsamples <- JackStraw(Mergedsamples, num.replicate = 100)
 Mergedsamples <- ScoreJackStraw(Mergedsamples, dims = 1:20)
 JackStrawPlot(Mergedsamples, dims = 1:20)
 
-#ElbowPlot(Mergedsamples)
-#ElbowPlot(Mergedsamples, ndims = 50, reduction = "pca")
+ElbowPlot(Mergedsamples)
+ElbowPlot(Mergedsamples, ndims = 50, reduction = "pca")
 
 # Cluster the cells
 print("Cluster the cells")
@@ -161,14 +161,14 @@ Mergedsamples <- FindClusters(Mergedsamples, resolution=c(0.1,0.3,0.5,0.7,1))
 # Run non-linear dimensional reduction (UMAP/tSNE)
 print("non-linear dimensional reduction ")
 Mergedsamples <- RunUMAP(Mergedsamples, dims = 1:20)
-#DimPlot(Mergedsamples, reduction = "umap", label = TRUE, repel = TRUE)
+DimPlot(Mergedsamples, reduction = "umap", label = TRUE, repel = TRUE)
 
 Mergedsamples <- RunTSNE(object = Mergedsamples)
-#DimPlot(object = Mergedsamples, reduction = "tsne")
+DimPlot(object = Mergedsamples, reduction = "tsne")
 
 Mergedsamples <- RunTSNE(object = Mergedsamples)
-#DimPlot(object = Mergedsamples, reduction = "tsne")
-#DimPlot(object = Mergedsamples, reduction = "tsne", group.by = 'orig.ident')
+DimPlot(object = Mergedsamples, reduction = "tsne")
+DimPlot(object = Mergedsamples, reduction = "tsne", group.by = 'orig.ident')
 
 ######Setup the Seurat objects
 # split the object into a list of two repeats
@@ -216,12 +216,12 @@ Mergedsamples.integrated<-RunUMAP(Mergedsamples.integrated, reduction="pca",
 
 #Visualization
 
-#DimPlot(Mergedsamples.integrated,reduction="umap",label = TRUE)
+DimPlot(Mergedsamples.integrated,reduction="umap",label = TRUE)
 
 #Compare
-#plot1<-DimPlot(Mergedsamples,reduction="umap", group.by = 'orig.ident')
-#plot2<-DimPlot(Mergedsamples.integrated,reduction="umap", group.by = 'orig.ident')
-#plot1+plot2
+plot1<-DimPlot(Mergedsamples,reduction="umap", group.by = 'orig.ident')
+plot2<-DimPlot(Mergedsamples.integrated,reduction="umap", group.by = 'orig.ident')
+plot1+plot2
 
 ref<-celldex::HumanPrimaryCellAtlasData()
 #View(as.data.frame(colData(ref)))
@@ -236,15 +236,15 @@ pred<-SingleR(test=pbmc_counts,
 
 Mergedsamples.integrated$singleR.labels<-pred$labels[match(rownames(Mergedsamples.integrated@meta.data),rownames(pred))]
 
-#DimPlot(Mergedsamples.integrated, reduction = "umap", group.by = "singleR.labels")+NoLegend()
+DimPlot(Mergedsamples.integrated, reduction = "umap", group.by = "singleR.labels")+NoLegend()
 
 
-#plotScoreHeatmap(pred)
+plotScoreHeatmap(pred)
 
-#plotDeltaDistribution(pred)
+plotDeltaDistribution(pred)
 library(pheatmap)
 tab <- table(Assigned=pred$labels, Clusters=Mergedsamples.integrated$seurat_clusters)
-#pheatmap(log10(tab+10), color = colorRampPalette(c('white','blue'))(10))
+pheatmap(log10(tab+10), color = colorRampPalette(c('white','blue'))(10))
 
 # setting Idents as Seurat annotations provided (also a sanity check!)
 print("setting Idents as Seurat annotations provided")
@@ -252,7 +252,7 @@ print("setting Idents as Seurat annotations provided")
 Idents(Mergedsamples.integrated) <- Mergedsamples.integrated@meta.data$singleR.labels
 #Idents(Mergedsamples.integrated)
 
-#DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
+DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
 
 
 # findMarkers between conditions ---------------------
@@ -262,7 +262,7 @@ Mergedsamples.integrated$celltype.cnd <- paste0(Mergedsamples.integrated$singleR
 #View(Mergedsamples.integrated@meta.data)
 Idents(Mergedsamples.integrated) <- Mergedsamples.integrated$celltype.cnd
 
-#DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
+DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
 
 
 all_Marker<-FindAllMarkers(Mergedsamples.integrated,
