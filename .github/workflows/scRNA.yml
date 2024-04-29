@@ -16,7 +16,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages:
-            any::devtools
+            any::remotes
             any::Seurat
             any::ggplot2
             any::tidyverse
@@ -34,7 +34,7 @@ jobs:
             
       - name: Install presto using devtools
         run: |
-          R -e "devtools::install_github('immunogenomics/presto')"
+          R -e "remotes::install_github('immunogenomics/presto')"
           
       - name: Check out repository
         uses: actions/checkout@v3
