@@ -7,7 +7,9 @@ library(SeuratObject)
 library(patchwork)
 library(celldex)
 library(openxlsx)
+library(remotes)
 
+remotes::install_github("immunogenomics/presto")
 # first load normal samples from a dataset and create Seurat Object as well.
 
 options(Seurat.object.assay.version = "v3")
