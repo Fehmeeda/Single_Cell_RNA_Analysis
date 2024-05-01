@@ -7,7 +7,6 @@ library(SeuratObject)
 library(patchwork)
 library(celldex)
 library(openxlsx)
-library(hdf5r)
 
 # first load normal samples from a dataset and create Seurat Object as well.
 
