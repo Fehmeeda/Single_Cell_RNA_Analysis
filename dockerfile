@@ -52,19 +52,19 @@ RUN R -e "install.packages(c('devtools','R.utils'))"
 RUN R -e "devtools::install_github('YuLab-SMU/ggtree')"
 
 # Install R packages using BiocManager
-RUN R -e "BiocManager::install(c('Seurat', 'ggplot2', 'tidyverse', 'gridExtra', 'SeuratObject', 'patchwork', 'celldex', 'openxlsx', 'clusterProfiler', 'enrichplot', 'pathview', 'SingleR', 'pheatmap', 'org.Hs.eg.db', 'readxl'))"
+RUN R -e "BiocManager::install(c('Seurat', 'ggplot2', 'tidyverse', 'gridExtra', 'SeuratObject', 'patchwork', 'celldex', 'openxlsx', 'SingleR', 'pheatmap', 'org.Hs.eg.db', 'readxl','viridis'))"
 
 # Create a directory for all the folders and scripts
 RUN mkdir /data
 
 # Copy scripts into the /data directory
-COPY singlec-cell-dataanalysis-normalvsovarian.R /data/
+COPY GSE233615-SingleCellRNAseq-script2.R /data/
 
 # Copy required files and datasets into the /data directory
-COPY GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/ /data/GSE158937_GSE118127_Single-Cell-Normal&OvarianSamples/
+COPY GSE118127-GSE233615_RAW-dataset/ /data/GSE118127-GSE233615_RAW-dataset/
 
 # Set the working directory to /data
 WORKDIR /data/
 
 # Run R scripts
-CMD ["Rscript", "singlec-cell-dataanalysis-normalvsovarian.R"]
+CMD ["Rscript", "GSE233615-SingleCellRNAseq-script2.R"]
