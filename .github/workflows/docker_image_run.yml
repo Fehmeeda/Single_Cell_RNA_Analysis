@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull Docker image
-        run: docker pull fehmeedamustafa/single_cell_rna:main-562fbe1
+        run: docker pull fehmeedamustafa/single_cell_rna:main-2c9feea
 
       - name: Run Docker image
-        run: docker run --rm fehmeedamustafa/single_cell_rna:main-562fbe1
+        run: docker run --rm fehmeedamustafa/single_cell_rna:main-2c9feea
