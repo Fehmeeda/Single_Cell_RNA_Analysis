@@ -6,13 +6,8 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-    container: docker://dvcorg/cml:latest
+    
     steps:
-      - name: Install Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install docker.io -y
-
       - name: Check out repository
         uses: actions/checkout@v3
 
