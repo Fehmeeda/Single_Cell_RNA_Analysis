@@ -29,7 +29,8 @@ RUN apt-get install -y \
     libcairo2-dev \
     libfribidi-dev \
     libjpeg-dev \
-    libx11-dev
+    libx11-dev \
+    libhdf5-dev
 
 # Install Bioconductor and required R packages
 RUN R -e "install.packages(c('BiocManager', 'devtools', 'R.utils','hdf5r'))"
