@@ -1,6 +1,11 @@
 # Use an official Ubuntu as a parent image
 FROM ubuntu:latest
 
+# Update package lists and install necessary packages
+RUN apt-get update && \
+    apt-get install -y containerd.io containerd && \
+    apt-get clean
+
 # Set environment variables for R installation
 ENV DEBIAN_FRONTEND noninteractive
 
