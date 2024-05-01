@@ -1,0 +1,14 @@
+name: Pull and Run Docker Image
+
+on:
+  workflow_dispatch: # This event allows manual triggering
+
+jobs:
+  pull-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Docker image
+        run: docker pull samreenraza40/microarray_data_analysis_scripts:main-8b782f0
+
+      - name: Run Docker image
+        run: docker run --rm samreenraza40/microarray_data_analysis_scripts:main-8b782f0
