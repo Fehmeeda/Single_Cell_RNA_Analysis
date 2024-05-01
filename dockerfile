@@ -35,9 +35,6 @@ RUN apt-get install -y \
 RUN R -e "install.packages(c('BiocManager', 'devtools', 'R.utils'))"
 RUN R -e "BiocManager::install(c('Seurat', 'ggplot2', 'tidyverse', 'gridExtra', 'SeuratObject', 'patchwork', 'celldex', 'openxlsx', 'SingleR', 'pheatmap', 'org.Hs.eg.db', 'readxl','viridis'))"
 
-# Install ggtree from GitHub
-RUN R -e "devtools::install_github('YuLab-SMU/ggtree')"
-
 # Create a directory for scripts and datasets
 RUN mkdir /data
 
