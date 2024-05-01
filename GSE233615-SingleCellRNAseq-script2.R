@@ -22,15 +22,15 @@ sample2 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Norm
 # Initialize the Seurat object with the raw (non-normalized data).
 sample2 <- CreateSeuratObject(counts = sample2, project = "Normal", min.cells = 3, min.features = 200)
 
-#sample3
+sample3
 sample3 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557969_sample6a_B1_i12H_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample3 <- CreateSeuratObject(counts = sample3, project = "Normal", min.cells = 3, min.features = 200)
 
 #sample4
-#sample4 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557961_sample11_B2_i10F_filtered_gene_bc_matrices_h5.h5")
+sample4 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM3557961_sample11_B2_i10F_filtered_gene_bc_matrices_h5.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
-#sample4 <- CreateSeuratObject(counts = sample4, project = "Normal", min.cells = 3, min.features = 200)
+sample4 <- CreateSeuratObject(counts = sample4, project = "Normal", min.cells = 3, min.features = 200)
 
 # Now load ovarian samples and also create seurat objects:
 
@@ -50,9 +50,9 @@ sample7 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerd
 sample7 <- CreateSeuratObject(counts = sample7, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample4
-#sample8 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431437_E4_filtered_feature_bc_matrix.h5")
+sample8 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431437_E4_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
-#sample8 <- CreateSeuratObject(counts = sample8, project = "Ovarian", min.cells = 3, min.features = 200)
+sample8 <- CreateSeuratObject(counts = sample8, project = "Ovarian", min.cells = 3, min.features = 200)
 
 # Create a vector of cell IDs
 cell_ids <- paste0("sample", 1:6)  
@@ -148,7 +148,7 @@ DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 50))
 print("dimensional")
 Mergedsamples <- JackStraw(Mergedsamples, num.replicate = 100)
 Mergedsamples <- ScoreJackStraw(Mergedsamples, dims = 1:20)
-#JackStrawPlot(Mergedsamples, dims = 1:20)
+JackStrawPlot(Mergedsamples, dims = 1:20)
 
 #ElbowPlot(Mergedsamples)
 #ElbowPlot(Mergedsamples, ndims = 50, reduction = "pca")
