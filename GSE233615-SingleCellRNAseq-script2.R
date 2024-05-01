@@ -150,8 +150,8 @@ Mergedsamples <- JackStraw(Mergedsamples, num.replicate = 100)
 Mergedsamples <- ScoreJackStraw(Mergedsamples, dims = 1:20)
 JackStrawPlot(Mergedsamples, dims = 1:20)
 
-#ElbowPlot(Mergedsamples)
-#ElbowPlot(Mergedsamples, ndims = 50, reduction = "pca")
+ElbowPlot(Mergedsamples)
+ElbowPlot(Mergedsamples, ndims = 50, reduction = "pca")
 
 # Cluster the cells
 print("Cluster the cells")
