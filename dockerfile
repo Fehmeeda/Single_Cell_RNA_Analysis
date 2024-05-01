@@ -4,6 +4,9 @@ FROM ubuntu:latest
 # Add the CRAN repository to the software sources list
 RUN echo "deb http://cran.stat.ucla.edu/bin/linux/ubuntu focal-cran40/" | tee -a /etc/apt/sources.list.d/r-project.list
 
+# Install gnupg package
+RUN apt-get update && apt-get install -y gnupg
+
 # Add the repository authentication key
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
