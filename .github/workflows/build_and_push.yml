@@ -1,7 +1,10 @@
 name: Build and Push Docker Image
 
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["Single Cell RNA data analysis"]
+    types:
+      - completed
 
 jobs:
   run:
