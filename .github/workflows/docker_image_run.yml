@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull Docker image
-        run: docker pull samreenraza40/microarray_data_analysis_scripts:main-8b782f0
+        run: docker pull fehmeedamustafa/single_cell_rna:main-8b782f0
 
       - name: Run Docker image
-        run: docker run --rm samreenraza40/microarray_data_analysis_scripts:main-8b782f0
+        run: docker run --rm fehmeedamustafa/single_cell_rna:main-8b782f0
