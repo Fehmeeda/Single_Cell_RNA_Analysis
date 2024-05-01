@@ -1,14 +1,17 @@
 name: Pull and Run Docker Image
 
 on:
-  workflow_dispatch: # This event allows manual triggering
+  workflow_run:
+    workflows: ["Build and Push Docker Image"]
+    types:
+      - completed
 
 jobs:
   pull-and-run:
     runs-on: ubuntu-latest
     steps:
       - name: Pull Docker image
-        run: docker pull fehmeedamustafa/single_cell_rna:main-d2e92da
+        run: docker pull fehmeedamustafa/single_cell_rna:latest
 
       - name: Run Docker image
-        run: docker run --rm fehmeedamustafa/single_cell_rna:main-d2e92da
+        run: docker run --rm fehmeedamustafa/single_cell_rna:latest
