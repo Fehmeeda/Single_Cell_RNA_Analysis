@@ -1,7 +1,6 @@
 name: Single Cell RNA data analysis
 
-on:
-  workflow_dispatch:
+on: [push]
   
 jobs:
   pull-and-run:
