@@ -55,9 +55,9 @@ sample8 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerd
 sample8 <- CreateSeuratObject(counts = sample8, project = "Ovarian", min.cells = 3, min.features = 200)
 
 # Create a vector of cell IDs
-cell_ids <- paste0("sample", 1:6)  
+cell_ids <- paste0("sample", 1:8)  
 # Merge Seurat Objects Normal
-Mergedsamples<- merge(sample1, y = c(sample2,sample3,sample5,sample6,sample7),          
+Mergedsamples<- merge(sample1, y = c(sample2,sample3,sample4,sample5,sample6,sample7,sample8),          
                       add.cell.ids = cell_ids,
                       project = 'MergedSamplesNormalandOvarian')
 #view(Mergedsamples@meta.data)
@@ -83,7 +83,7 @@ range(Mergedsamples$percent.mt)
 
 ##### Selecting cells for further analysis
 # Visualize QC metrics as a violin plot
-print("Selecting cells for further analysis")
+
 VlnPlot(Mergedsamples, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
 
 Mergedsamples <- subset(Mergedsamples, subset = nFeature_RNA > 500 & nFeature_RNA < 4000 & nCount_RNA < 20000 & percent.mt < 10)
@@ -97,7 +97,7 @@ VlnPlot(Mergedsamples, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"),
 #View(Mergedsamples)
 
 # Data normalization
-print("Data normalization")
+
 #Mergedsamples@assays[["RNA"]]@data@x
 
 Mergedsamples <- NormalizeData(Mergedsamples, 
@@ -106,14 +106,14 @@ Mergedsamples <- NormalizeData(Mergedsamples,
 #Mergedsamples@assays[["RNA"]]@data@x
 
 # Identification of highly variable features (feature selection)
-print(" feature selection")
+
 #Mergedsamples
 
 Mergedsamples <- FindVariableFeatures(Mergedsamples, 
                                       selection.method = "vst", nfeatures = 2000)
 
 # Top features and featurePlot
-print("Top features and featurePlot")
+
 
 variable_genes<-Mergedsamples@assays[["RNA"]]@var.features
 write.table(variable_genes, file = "variable_genes.txt", sep = "\t", row.names = FALSE)
@@ -123,7 +123,7 @@ VariableFeaturePlot(Mergedsamples)
 #Mergedsamples
 
 # Data scaling
-print("Data scaling")
+
 Mergedsamples <- ScaleData(Mergedsamples) #2000 identified variable features 
 
 all.genes <- rownames(Mergedsamples)
@@ -134,18 +134,18 @@ Mergedsamples <- ScaleData(Mergedsamples, features = all.genes)
 #View(Mergedsamples@commands)
 
 #Perform PCA on the scaled data (linear dimensional reduction)
-print("linear dimensional reduction")
+
 Mergedsamples <- RunPCA(Mergedsamples, features = VariableFeatures(object = Mergedsamples))
 
 # Examine and visualize PCA results a few different ways
-print("PCA")
+
 # DimPlot(), VizDimReduction() and DimHeatmap ()
 DimPlot(Mergedsamples, reduction = "pca", dims = c(1,2))
 DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 10))
 DimPlot(Mergedsamples, reduction = "pca", dims = c(1, 50))
 
 # Determine the ‘dimensional’ of the dataset
-print("dimensional")
+
 Mergedsamples <- JackStraw(Mergedsamples, num.replicate = 100)
 Mergedsamples <- ScoreJackStraw(Mergedsamples, dims = 1:20)
 JackStrawPlot(Mergedsamples, dims = 1:20)
@@ -154,12 +154,12 @@ ElbowPlot(Mergedsamples)
 ElbowPlot(Mergedsamples, ndims = 50, reduction = "pca")
 
 # Cluster the cells
-print("Cluster the cells")
+
 Mergedsamples <- FindNeighbors(Mergedsamples, dims = 1:20)
 Mergedsamples <- FindClusters(Mergedsamples, resolution=c(0.1,0.3,0.5,0.7,1))
 
 # Run non-linear dimensional reduction (UMAP/tSNE)
-print("non-linear dimensional reduction ")
+
 Mergedsamples <- RunUMAP(Mergedsamples, dims = 1:20)
 DimPlot(Mergedsamples, reduction = "umap", label = TRUE, repel = TRUE)
 
@@ -172,13 +172,13 @@ DimPlot(object = Mergedsamples, reduction = "tsne", group.by = 'orig.ident')
 
 ######Setup the Seurat objects
 # split the object into a list of two repeats
-print("Setup the Seurat objects")
+
 Mergedsamples.list<-SplitObject(Mergedsamples, split.by = 'orig.ident')
 
 #list()
 
 # normalize and identify variable features for each dataset independently 
-print(" normalize and identify variable features for each dataset independently ")
+
 Mergedsamples.list <- lapply(Mergedsamples.list, function(x) {
   x <- NormalizeData(x)
   x <- FindVariableFeatures(x, selection.method = "vst", nfeatures = 2000)
@@ -186,25 +186,25 @@ Mergedsamples.list <- lapply(Mergedsamples.list, function(x) {
 })
 
 #select features that are repeatedly variable across dataset for integration
-print("select features that are repeatedly variable across dataset for integration")
+
 
 features<-SelectIntegrationFeatures(object.list = Mergedsamples.list)
 
 #Find integration Anchors
-print("Find integration Anchors")
+
 Mergedsamples.anchors<-FindIntegrationAnchors(object.list = Mergedsamples.list, anchor.features = features)
 
 #perform integration to create an 'integrated' data assay
-print("integrated")
+
 Mergedsamples.integrated<-IntegrateData(anchorset = Mergedsamples.anchors)
 
 ###Perfrom an integrated analysis
-print("Perfrom an integrated analysis")
+
 #specify that we will perform downstream analysis on the integrated data
 DefaultAssay(Mergedsamples.integrated)<-"integrated"
 
 #run the standard workflow for visulaization and clustering
-print("run the standard workflow for visulaization and clustering")
+
 
 Mergedsamples.integrated<-ScaleData(Mergedsamples.integrated,verbose = FALSE)
 Mergedsamples.integrated<-RunPCA(Mergedsamples.integrated, npcs = 50, verbose = FALSE)
@@ -247,7 +247,7 @@ tab <- table(Assigned=pred$labels, Clusters=Mergedsamples.integrated$seurat_clus
 pheatmap(log10(tab+10), color = colorRampPalette(c('white','blue'))(10))
 
 # setting Idents as Seurat annotations provided (also a sanity check!)
-print("setting Idents as Seurat annotations provided")
+
 
 Idents(Mergedsamples.integrated) <- Mergedsamples.integrated@meta.data$singleR.labels
 #Idents(Mergedsamples.integrated)
@@ -256,7 +256,7 @@ DimPlot(Mergedsamples.integrated, reduction = 'umap', label = TRUE)
 
 
 # findMarkers between conditions ---------------------
-print("findMarkers between conditions")
+
 
 Mergedsamples.integrated$celltype.cnd <- paste0(Mergedsamples.integrated$singleR.labels,'_', Mergedsamples.integrated$orig.ident)
 #View(Mergedsamples.integrated@meta.data)
@@ -271,11 +271,11 @@ all_Marker<-FindAllMarkers(Mergedsamples.integrated,
                            only.pos = TRUE)
 
 # Add a column indicating gene status
-print("Add a column indicating gene status")
+
 
 all_Marker$status <- ifelse(all_Marker$avg_log2FC >= 2 & all_Marker$p_val_adj < 0.0001, "Upregulated",
                             ifelse(all_Marker$avg_log2FC < 2 & all_Marker$p_val_adj < 0.0001, "Downregulated",
                                    "Not significant"))
 library(openxlsx)
 write.xlsx(all_Marker,"singlecellDEGs.xlsx",rowNames=FALSE)
-print("DONE")
+
