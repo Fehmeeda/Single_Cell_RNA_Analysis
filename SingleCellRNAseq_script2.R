@@ -37,22 +37,22 @@ sample4 <- CreateSeuratObject(counts = sample4, project = "Normal", min.cells = 
 # Now load ovarian samples and also create seurat objects:
 
 #sample1
-sample5<- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM7431434_E1_filtered_feature_bc_matrix.h5")
+sample5<- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431434_E1_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample5 <- CreateSeuratObject(counts = sample5, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample2
-sample6<- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM7431435_E2_filtered_feature_bc_matrix.h5")
+sample6<- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431435_E2_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample6 <- CreateSeuratObject(counts = sample6, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample3
-sample7 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM7431436_E3_filtered_feature_bc_matrix.h5")
+sample7 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431436_E3_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample7 <- CreateSeuratObject(counts = sample7, project = "Ovarian", min.cells = 3, min.features = 200)
 
 #sample4
-sample8 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/GSE118127-Normalsamplesdataset/GSM7431437_E4_filtered_feature_bc_matrix.h5")
+sample8 <- Read10X_h5(filename = "GSE118127-GSE233615_RAW-dataset/OvarianCancerdataset-GSE233615_RAW/GSM7431437_E4_filtered_feature_bc_matrix.h5")
 # Initialize the Seurat object with the raw (non-normalized data).
 sample8 <- CreateSeuratObject(counts = sample8, project = "Ovarian", min.cells = 3, min.features = 200)
 
