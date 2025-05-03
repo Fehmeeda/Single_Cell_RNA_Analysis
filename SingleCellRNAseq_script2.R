@@ -7,9 +7,6 @@ library(SeuratObject)
 library(patchwork)
 library(celldex)
 library(openxlsx)
-library(clusterProfiler)
-library(enrichplot)
-library(pathview)
 library(SingleR)
 
 
