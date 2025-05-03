@@ -8,6 +8,7 @@ library(patchwork)
 library(celldex)
 library(openxlsx)
 library(SingleR)
+library(pheatmap)
 
 
 # first load normal samples from a dataset and create Seurat Object as well.
