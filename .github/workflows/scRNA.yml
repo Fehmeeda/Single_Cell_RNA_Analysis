@@ -28,6 +28,7 @@ jobs:
             any::hdf5r
             any::readxl
             any::viridis
+            any::clusterProfiler
      
       - name: Check out repository
         uses: actions/checkout@v3
