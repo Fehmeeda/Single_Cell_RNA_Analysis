@@ -34,7 +34,7 @@ jobs:
 
       - name: Running R scripts 
         run: |  
-          Rscript SingleCellRNAseq_script2.R
+          Rscript Scripts/SingleCellRNAseq_script2.R
 
       - name: Build and Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v6
