@@ -33,14 +33,14 @@ RUN apt-get install -y \
     libhdf5-dev
 
 # Install Bioconductor and required R packages
-RUN R -e "install.packages(c('BiocManager', 'devtools', 'R.utils','hdf5r'))"
+RUN R -e "install.packages(c('BiocManager', 'devtools', 'R.utils', 'hdf5r'))"
 RUN R -e "BiocManager::install(c('Seurat', 'ggplot2', 'tidyverse', 'gridExtra', 'SeuratObject', 'patchwork', 'celldex', 'openxlsx','SingleR', 'pheatmap', 'org.Hs.eg.db', 'readxl','viridis'))"
 
 # Create a directory for scripts and datasets
 RUN mkdir /data
 
 # Copy scripts and datasets
-COPY GSE233615-SingleCellRNAseq-script2.R /data/
+COPY Scripts/GSE233615-SingleCellRNAseq-script2.R /data/
 COPY GSE118127-GSE233615_RAW-dataset/ /data/GSE118127-GSE233615_RAW-dataset/
 
 # Set the working directory to /data
