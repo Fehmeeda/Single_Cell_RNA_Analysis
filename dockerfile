@@ -34,8 +34,7 @@ RUN apt-get install -y \
 
 # Install Bioconductor and required R packages
 RUN R -e "install.packages(c('BiocManager', 'devtools', 'R.utils','hdf5r'))"
-RUN R -e "BiocManager::install(c('Seurat', 'ggplot2', 'tidyverse', 'gridExtra', 'SeuratObject', 'patchwork', 'celldex', 'openxlsx',
-                                 'SingleR', 'pheatmap', 'org.Hs.eg.db', 'readxl','viridis'))"
+RUN R -e "BiocManager::install(c('Seurat', 'ggplot2', 'tidyverse', 'gridExtra', 'SeuratObject', 'patchwork', 'celldex', 'openxlsx','SingleR', 'pheatmap', 'org.Hs.eg.db', 'readxl','viridis'))"
 
 # Create a directory for scripts and datasets
 RUN mkdir /data
