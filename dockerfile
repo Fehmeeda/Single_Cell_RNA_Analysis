@@ -47,4 +47,4 @@ COPY GSE118127-GSE233615_RAW-dataset/ /data/GSE118127-GSE233615_RAW-dataset/
 WORKDIR /data/
 
 # Run R script
-CMD ["Rscript", "GSE233615-SingleCellRNAseq-script2.R"]
+CMD ["Rscript", "SingleCellRNAseq_script2.R"]
