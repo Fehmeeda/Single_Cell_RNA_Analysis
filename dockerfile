@@ -40,7 +40,7 @@ RUN R -e "BiocManager::install(c('Seurat', 'ggplot2', 'tidyverse', 'gridExtra', 
 RUN mkdir /data
 
 # Copy scripts and datasets
-COPY Scripts/GSE233615-SingleCellRNAseq-script2.R /data/
+COPY Scripts/SingleCellRNAseq_script2.R /data/
 COPY GSE118127-GSE233615_RAW-dataset/ /data/GSE118127-GSE233615_RAW-dataset/
 
 # Set the working directory to /data
